@@ -6,27 +6,27 @@
 # Note that environment variables can be set in several places
 # See https://docs.gitlab.com/ee/ci/variables/#cicd-variable-precedence
 
-workflow:
+#workflow:
   rules:
   - if: $CI_COMMIT_BRANCH != "main" && $CI_PIPELINE_SOURCE != "merge_request_event"
     when: never
   - when: always
 
-image: maven:3.8.6-jdk-11
+#image: maven:3.8.6-jdk-11
 
 
 stages:
-- ".pre"
-- pull
-- build
-- remove-d
-- build-image
-- test
-- fuzz
-- sast
-- dast
-- performance
-- ".post"
+  - ".pre"
+  - pull
+  - build
+  - remove-d
+  - build-image
+  - test
+  - fuzz
+  - sast
+  - dast
+  - performance
+  - ".post"
 include:
 - template: Jobs/Code-Quality.gitlab-ci.yml
 - local: Dependency-Scanning.gitlab-ci.yml
